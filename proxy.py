@@ -21,6 +21,7 @@ DAVNIT_KEEP_SOURCES = { 'OPD', 'OCSO', 'FHP' }
 ALLOWED_STREAM_HOST_SUFFIXES = ('divas.cloud',)
 PUBLIC_STATIC_FILES = frozenset({
     'index.html',
+    'app.js',
     'floridamap-logo.svg',
     'floridamap-social-card.png',
     'floridamap-social-square.png',
