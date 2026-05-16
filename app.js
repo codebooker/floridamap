@@ -384,15 +384,6 @@ function syncMobileHeaderMenuState() {
   const toggle = document.getElementById('mobile-header-menu-toggle');
   if (!header || !toggle) return;
 
-  if (isDesktopPanelLayout()) {
-    mobileHeaderMenuOpen = false;
-    header.classList.remove('mobile-menu-open');
-    toggle.classList.remove('active');
-    toggle.setAttribute('aria-label', 'Open layers menu');
-    toggle.title = 'Open layers menu';
-    return;
-  }
-
   header.classList.toggle('mobile-menu-open', mobileHeaderMenuOpen);
   toggle.classList.toggle('active', mobileHeaderMenuOpen);
   toggle.setAttribute('aria-label', mobileHeaderMenuOpen ? 'Close layers menu' : 'Open layers menu');
@@ -400,7 +391,6 @@ function syncMobileHeaderMenuState() {
 }
 
 function toggleMobileHeaderMenu(force) {
-  if (isDesktopPanelLayout()) return;
   mobileHeaderMenuOpen = typeof force === 'boolean' ? force : !mobileHeaderMenuOpen;
   syncMobileHeaderMenuState();
 }
@@ -3063,8 +3053,29 @@ window.addEventListener('resize', () => {
   renderCameraHopHud();
   renderActivityFeed();
 });
+// Button wiring — inline onclick/onchange are blocked by CSP (no unsafe-inline in script-src)
+document.getElementById('mobile-header-menu-toggle').addEventListener('click', () => toggleMobileHeaderMenu());
+document.getElementById('layer-toggles').addEventListener('click', e => {
+  const btn = e.target.closest('[data-layer]');
+  if (btn) toggleLayer(btn.dataset.layer);
+});
+document.getElementById('map-key').addEventListener('change', e => {
+  const cb = e.target.closest('.key-cb');
+  if (!cb) return;
+  if (cb.dataset.layer) toggleLayer(cb.dataset.layer);
+  else if (cb.dataset.emerType) toggleEmerType(cb.dataset.emerType);
+});
+document.getElementById('feed-panel-toggle').addEventListener('click', () => toggleFeedPanelCollapsed());
+document.getElementById('live-status-toggle').addEventListener('click', () => toggleLiveStatusCollapsed());
+document.getElementById('map-key-toggle').addEventListener('click', () => toggleMapKey());
+document.getElementById('panel-close').addEventListener('click', () => closePanel());
+document.getElementById('btn-snapshot').addEventListener('click', () => showSnapshot());
+document.getElementById('btn-live').addEventListener('click', () => showLive());
+document.getElementById('btn-stop').addEventListener('click', () => stopLive());
+document.getElementById('panel-toggle').addEventListener('click', () => togglePanelCollapsed());
+
 document.addEventListener('click', (event) => {
-  if (isDesktopPanelLayout() || !mobileHeaderMenuOpen) return;
+  if (!mobileHeaderMenuOpen) return;
   const header = document.querySelector('header');
   if (header && !header.contains(event.target)) {
     toggleMobileHeaderMenu(false);

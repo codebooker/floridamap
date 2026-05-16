@@ -2121,7 +2121,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if not target:
             self._respond_not_found(); return
         try:
-            cache_control = 'no-cache' if target.endswith('.html') else 'public, max-age=86400'
+            no_cache_exts = ('.html', '.js')
+            cache_control = 'no-cache' if target.endswith(no_cache_exts) else 'public, max-age=86400'
             self._write_page(200, target, cache_control=cache_control)
         except FileNotFoundError:
             self._respond_not_found()

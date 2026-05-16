@@ -638,21 +638,39 @@
         font-size: 9px;
         letter-spacing: 0.10em;
       }
+      #mobile-header-menu-toggle {
+        display: inline-flex;
+      }
       #header-actions {
-        display: flex;
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 14px;
+        left: auto;
+        z-index: 1105;
+        display: none;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
-        justify-content: flex-end;
-        gap: 10px;
-        flex: 1;
-        min-width: 0;
-        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 7px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(48,54,61,0.92);
+        background: rgba(13,17,23,0.94);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.40);
+        backdrop-filter: blur(12px);
+        max-width: min(760px, calc(100vw - 28px));
+      }
+      header.mobile-menu-open #header-actions {
+        display: flex;
       }
       #layer-toggles {
-        flex: 1;
-        min-width: 0;
-        justify-content: flex-end;
-        flex-wrap: nowrap;
-        gap: 6px;
+        display: flex;
+        flex: none;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 7px;
+        width: 100%;
       }
       .layer-btn {
         height: 29px;
@@ -1440,47 +1458,47 @@
     </div>
   </div>
 
-  <button id="mobile-header-menu-toggle" type="button" onclick="toggleMobileHeaderMenu()" aria-label="Open layers menu" title="Open layers menu">
+  <button id="mobile-header-menu-toggle" type="button" aria-label="Open layers menu" title="Open layers menu">
     <span id="mobile-header-menu-icon">☰</span>
     <span id="mobile-header-menu-text">Map Layers</span>
   </button>
 
   <div id="header-actions">
     <div id="layer-toggles">
-      <button class="layer-btn cam active" onclick="toggleLayer('cam')" title="Traffic cameras">
+      <button class="layer-btn cam active" data-layer="cam" title="Traffic cameras">
         <span class="dot" style="background:#3fb950"></span> Cameras
       </button>
-      <button class="layer-btn sign active" onclick="toggleLayer('sign')" title="Highway message signs">
+      <button class="layer-btn sign active" data-layer="sign" title="Highway message signs">
         <span class="dot" style="background:#e3b341"></span> Signs
       </button>
-      <button class="layer-btn inc active" onclick="toggleLayer('inc')" title="Incidents, disabled vehicles, and live emergency calls">
+      <button class="layer-btn inc active" data-layer="inc" title="Incidents, disabled vehicles, and live emergency calls">
         <span class="dot" style="background:#f85149"></span> Incidents
       </button>
-      <button class="layer-btn con active" onclick="toggleLayer('con')" title="Construction zones">
+      <button class="layer-btn con active" data-layer="con" title="Construction zones">
         <span class="dot" style="background:#d29922"></span> Construction
       </button>
-      <button class="layer-btn flow active" onclick="toggleLayer('flow')" title="Live traffic flow">
+      <button class="layer-btn flow active" data-layer="flow" title="Live traffic flow">
         <span class="dot" style="background:#f85149"></span> Traffic Flows
       </button>
-      <button class="layer-btn radar active" onclick="toggleLayer('radar')" title="RainViewer weather radar with NOAA fallback">
+      <button class="layer-btn radar active" data-layer="radar" title="RainViewer weather radar with NOAA fallback">
         <span class="dot" style="background:#7ee3ff"></span> Weather Radar
       </button>
-      <button class="layer-btn power active" onclick="toggleLayer('power')" title="Utility power outages">
+      <button class="layer-btn power active" data-layer="power" title="Utility power outages">
         <span class="dot" style="background:#f778ba"></span> Power Outages
       </button>
-      <button class="layer-btn lpr active" onclick="toggleLayer('lpr')" title="License plate readers (Flock Safety)">
+      <button class="layer-btn lpr active" data-layer="lpr" title="License plate readers (Flock Safety)">
         <span class="dot" style="background:#a371f7"></span> Plate Readers
       </button>
-      <button class="layer-btn sens active" onclick="toggleLayer('sens')" title="FDOT speed sensors">
+      <button class="layer-btn sens active" data-layer="sens" title="FDOT speed sensors">
         <span class="dot" style="background:#58a6ff"></span> Sensors
       </button>
-      <button class="layer-btn temp active" onclick="toggleLayer('temp')" title="Live air temperature at ASOS weather stations">
+      <button class="layer-btn temp active" data-layer="temp" title="Live air temperature at ASOS weather stations">
         <span class="dot" style="background:#ff9d4d"></span> Temperature
       </button>
-      <button class="layer-btn govair active" onclick="toggleLayer('govair')" title="Government, military, and public-safety aircraft">
+      <button class="layer-btn govair active" data-layer="govair" title="Government, military, and public-safety aircraft">
         <span class="dot" style="background:#f0a500"></span> Government Aircraft
       </button>
-      <button class="layer-btn civair active" onclick="toggleLayer('civair')" title="Civilian aircraft">
+      <button class="layer-btn civair active" data-layer="civair" title="Civilian aircraft">
         <span class="dot" style="background:#c9d1d9"></span> Civilian Aircraft
       </button>
     </div>
@@ -1496,7 +1514,7 @@
     </div>
     <div id="feed-list"></div>
   </div>
-  <button id="feed-panel-toggle" type="button" onclick="toggleFeedPanelCollapsed()" aria-label="Collapse activity feed" title="Collapse activity feed">
+  <button id="feed-panel-toggle" type="button" aria-label="Collapse activity feed" title="Collapse activity feed">
     <span id="feed-panel-toggle-chevron">‹</span>
     <span id="feed-panel-toggle-label">Expand The Activity Panel<br>To View On-Screen Activity.</span>
   </button>
@@ -1514,7 +1532,7 @@
         <div class="live-status-grid" id="live-status-grid"></div>
       </div>
     </div>
-    <button id="live-status-toggle" type="button" onclick="toggleLiveStatusCollapsed()" aria-label="Show live status" title="Show live status">
+    <button id="live-status-toggle" type="button" aria-label="Show live status" title="Show live status">
       <span id="live-status-toggle-dot"></span>
       <span id="live-status-toggle-label">Live Status</span>
     </button>
@@ -1527,7 +1545,7 @@
     </a>
 
     <!-- Map Key -->
-    <button id="map-key-toggle" type="button" onclick="toggleMapKey()" aria-label="Toggle map key" title="Map key">
+    <button id="map-key-toggle" type="button" aria-label="Toggle map key" title="Map key">
       <span>&#9776; Map Key</span>
     </button>
     <div id="map-key" class="hidden" aria-label="Map key">
@@ -1539,39 +1557,39 @@
         <div class="key-section-label">Markers</div>
 
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="cam" onchange="toggleLayer('cam')">
+          <input type="checkbox" class="key-cb" checked data-layer="cam">
           <div class="key-icon"><div class="key-circle" style="background:#3fb950;box-shadow:0 0 4px rgba(63,185,80,0.6)"></div></div>
           <span>Traffic Camera</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="cam" onchange="toggleLayer('cam')">
+          <input type="checkbox" class="key-cb" checked data-layer="cam">
           <div class="key-icon"><div class="key-circle" style="background:#8b949e;box-shadow:none"></div></div>
           <span>Camera (snapshot only)</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="sign" onchange="toggleLayer('sign')">
+          <input type="checkbox" class="key-cb" checked data-layer="sign">
           <div class="key-icon"><div class="key-diamond" style="background:#e3b341;box-shadow:0 0 4px rgba(227,179,65,0.7)"></div></div>
           <span>Message Sign</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="sign" onchange="toggleLayer('sign')">
+          <input type="checkbox" class="key-cb" checked data-layer="sign">
           <div class="key-icon"><div class="key-diamond" style="background:#ff6b35;box-shadow:0 0 6px rgba(255,107,53,0.9)"></div></div>
           <span>Message Sign (active alert)</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="inc" onchange="toggleLayer('inc')">
+          <input type="checkbox" class="key-cb" checked data-layer="inc">
           <div class="key-icon">
             <div class="key-circle" style="background:#f85149;box-shadow:0 0 6px rgba(248,81,73,0.8);font-size:7px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center">!</div>
           </div>
           <span>Incident</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="con" onchange="toggleLayer('con')">
+          <input type="checkbox" class="key-cb" checked data-layer="con">
           <div class="key-icon"><div class="key-triangle" style="border-bottom:13px solid #d29922;filter:drop-shadow(0 0 3px rgba(210,153,34,0.7))"></div></div>
           <span>Construction</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="lpr" onchange="toggleLayer('lpr')">
+          <input type="checkbox" class="key-cb" checked data-layer="lpr">
           <div class="key-icon">
             <svg width="18" height="18" viewBox="0 0 28 28" style="display:block">
               <path d="M 14 14 L 7.92 2.51 A 13 13 0 0 1 20.08 2.51 Z" fill="#e53935" fill-opacity="0.85"/>
@@ -1580,7 +1598,7 @@
           <span>Flock Safety Camera</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="sens" onchange="toggleLayer('sens')">
+          <input type="checkbox" class="key-cb" checked data-layer="sens">
           <div class="key-icon"><div class="key-rect" style="background:rgba(88,166,255,0.85)">55</div></div>
           <span>Traffic Sensor (speed mph)</span>
         </label>
@@ -1588,38 +1606,38 @@
         <div class="key-section-label">Incidents</div>
 
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-emer-type="fire" onchange="toggleEmerType('fire')">
+          <input type="checkbox" class="key-cb" checked data-emer-type="fire">
           <div class="key-icon"><div class="key-emer-dot" style="background:#ff4500">🔥</div></div>
           <span>Fire</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-emer-type="medical" onchange="toggleEmerType('medical')">
+          <input type="checkbox" class="key-cb" checked data-emer-type="medical">
           <div class="key-icon"><div class="key-emer-dot" style="background:#e05252">🚑</div></div>
           <span>Medical</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-emer-type="police" onchange="toggleEmerType('police')">
+          <input type="checkbox" class="key-cb" checked data-emer-type="police">
           <div class="key-icon"><div class="key-emer-dot" style="background:#4f94cd">🚔</div></div>
           <span>Police</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-emer-type="traffic" onchange="toggleEmerType('traffic')">
+          <input type="checkbox" class="key-cb" checked data-emer-type="traffic">
           <div class="key-icon"><div class="key-emer-dot" style="background:#f0a500">🚗</div></div>
           <span>Traffic (emergency)</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-emer-type="patrol" onchange="toggleEmerType('patrol')">
+          <input type="checkbox" class="key-cb" checked data-emer-type="patrol">
           <div class="key-icon"><div class="key-emer-dot" style="background:#6c8ebf">👁</div></div>
           <span>Patrol</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-emer-type="warning" onchange="toggleEmerType('warning')">
+          <input type="checkbox" class="key-cb" checked data-emer-type="warning">
           <div class="key-icon"><div class="key-emer-dot" style="background:#d29922">⚠</div></div>
           <span>Warning</span>
         </label>
 
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="temp" onchange="toggleLayer('temp')">
+          <input type="checkbox" class="key-cb" checked data-layer="temp">
           <div class="key-icon"><div class="temp-marker" style="background:#ff9d4d;font-size:9px">72°</div></div>
           <span>Temperature Station</span>
         </label>
@@ -1627,12 +1645,12 @@
         <div class="key-section-label">Aircraft</div>
 
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="govair" onchange="toggleLayer('govair')">
+          <input type="checkbox" class="key-cb" checked data-layer="govair">
           <div class="key-icon"><span style="font-size:14px">✈</span></div>
           <span style="color:#f0a500">Government / Military</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="civair" onchange="toggleLayer('civair')">
+          <input type="checkbox" class="key-cb" checked data-layer="civair">
           <div class="key-icon"><span style="font-size:14px">✈</span></div>
           <span style="color:#c9d1d9">Civil Aviation</span>
         </label>
@@ -1640,17 +1658,17 @@
         <div class="key-section-label">Overlays</div>
 
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="flow" onchange="toggleLayer('flow')">
+          <input type="checkbox" class="key-cb" checked data-layer="flow">
           <div class="key-icon"><div class="key-swatch" style="background:linear-gradient(90deg,#0a4f1a,#1a8f2e,#58a6ff)"></div></div>
           <span>Traffic Flow (speed)</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="radar" onchange="toggleLayer('radar')">
+          <input type="checkbox" class="key-cb" checked data-layer="radar">
           <div class="key-icon"><div class="key-swatch" style="background:linear-gradient(135deg,#00aaff,#7ee3ff,#00cc44)"></div></div>
           <span>Weather Radar</span>
         </label>
         <label class="key-row">
-          <input type="checkbox" class="key-cb" checked data-layer="power" onchange="toggleLayer('power')">
+          <input type="checkbox" class="key-cb" checked data-layer="power">
           <div class="key-icon"><div class="key-swatch" style="background:linear-gradient(135deg,#1a0a2e,#f778ba,#ff2d55)"></div></div>
           <span>Power Outages</span>
         </label>
@@ -1662,7 +1680,7 @@
   </div>
 
   <div id="panel">
-    <button id="panel-close" onclick="closePanel()">✕</button>
+    <button id="panel-close">✕</button>
 
     <div id="panel-empty">
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1684,9 +1702,9 @@
         <div id="cam-desc"></div>
         <div id="cam-coords"></div>
         <div id="cam-actions">
-          <button class="btn btn-primary" onclick="showSnapshot()">Snapshot</button>
-          <button class="btn btn-secondary" id="btn-live" onclick="showLive()">Watch Live</button>
-          <button class="btn btn-danger" id="btn-stop" onclick="stopLive()">Stop</button>
+          <button class="btn btn-primary" id="btn-snapshot">Snapshot</button>
+          <button class="btn btn-secondary" id="btn-live">Watch Live</button>
+          <button class="btn btn-danger" id="btn-stop">Stop</button>
         </div>
       </div>
       <div id="cam-list-section">
@@ -1695,7 +1713,7 @@
       </div>
     </div>
   </div>
-  <button id="panel-toggle" type="button" onclick="togglePanelCollapsed()" aria-label="Collapse camera panel" title="Collapse camera panel">›</button>
+  <button id="panel-toggle" type="button" aria-label="Collapse camera panel" title="Collapse camera panel">›</button>
 </div>
 
 <script src="/app.js"></script>
