@@ -1,0 +1,185 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="46" x2="1130" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121D2B"/>
+      <stop offset="0.5" stop-color="#0D1117"/>
+      <stop offset="1" stop-color="#0F1A1E"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="718" y1="112" x2="1068" y2="542" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1C2E"/>
+      <stop offset="1" stop-color="#070D14"/>
+    </linearGradient>
+    <linearGradient id="fl-fill" x1="890" y1="183" x2="910" y2="475" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#132233"/>
+      <stop offset="1" stop-color="#091420"/>
+    </linearGradient>
+    <radialGradient id="fl-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(895 335) scale(230 210)">
+      <stop stop-color="#3FB950" stop-opacity="0.13"/>
+      <stop offset="0.55" stop-color="#58A6FF" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#0D1117" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="headline-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 290) scale(280 160)">
+      <stop stop-color="#1A4A6E" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#0D1117" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="42" y="32" width="1116" height="580" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.012 0 0 0 0 0.039 0 0 0 0 0.09 0 0 0 0.42 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+    <filter id="dot-glow" x="-100%" y="-100%" width="300%" height="300%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Canvas background -->
+  <rect width="1200" height="630" fill="#0D1117"/>
+
+  <!-- Card -->
+  <g filter="url(#shadow)">
+    <rect x="62" y="54" width="1076" height="522" rx="32" fill="url(#bg)"/>
+    <rect x="63" y="55" width="1074" height="520" rx="31" stroke="#263545" stroke-width="2"/>
+  </g>
+
+  <!-- Subtle grid (left half only) -->
+  <g opacity="0.3">
+    <path d="M88 142H700" stroke="#1B2735" stroke-width="1"/>
+    <path d="M88 228H700" stroke="#1B2735" stroke-width="1"/>
+    <path d="M88 314H700" stroke="#1B2735" stroke-width="1"/>
+    <path d="M88 400H700" stroke="#1B2735" stroke-width="1"/>
+    <path d="M88 486H700" stroke="#1B2735" stroke-width="1"/>
+    <path d="M258 54V576" stroke="#1B2735" stroke-width="1"/>
+    <path d="M430 54V576" stroke="#1B2735" stroke-width="1"/>
+    <path d="M602 54V576" stroke="#1B2735" stroke-width="1"/>
+  </g>
+
+  <!-- Subtle headline glow -->
+  <rect x="62" y="200" width="620" height="200" fill="url(#headline-glow)"/>
+
+  <!-- ===== LEFT CONTENT ===== -->
+
+  <!-- Logo mark -->
+  <g transform="translate(92 84)">
+    <rect width="56" height="56" rx="17" fill="#111B27" stroke="#27415F" stroke-width="1.5"/>
+    <path d="M11 19L23 16L35 19L47 16V43L35 46L23 43L11 46V19Z" fill="#122235" stroke="#5EA2F2" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M23 16V43" stroke="#38639A" stroke-width="2"/>
+    <path d="M35 19V46" stroke="#38639A" stroke-width="2"/>
+    <path d="M15 33C18 27 21 25 25 26C28 27 30 31 34 32C38 32 40 29 44 30" stroke="#88E4FF" stroke-width="3.4" stroke-linecap="round"/>
+    <circle cx="41" cy="30" r="4" fill="#F7783B" stroke="#FFE8D7" stroke-width="1.2"/>
+  </g>
+  <text x="166" y="119" fill="#F0F6FC" font-size="40" font-family="Arial, Helvetica, sans-serif" font-weight="700">FloridaMap</text>
+  <text x="168" y="146" fill="#58A6FF" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">floridamap.app</text>
+
+  <!-- Headline -->
+  <text x="94" y="254" fill="#F0F6FC" font-size="58" font-family="Arial, Helvetica, sans-serif" font-weight="700">Live Florida</text>
+  <text x="94" y="322" fill="#F0F6FC" font-size="58" font-family="Arial, Helvetica, sans-serif" font-weight="700">Operations Map</text>
+
+  <!-- Description -->
+  <text x="96" y="374" fill="#A9B4C0" font-size="23" font-family="Arial, Helvetica, sans-serif">Traffic cameras, incidents, weather radar, aircraft,</text>
+  <text x="96" y="406" fill="#A9B4C0" font-size="23" font-family="Arial, Helvetica, sans-serif">power outages, signs, sensors &amp; plate readers.</text>
+
+  <!-- Badge pills: Cameras · Incidents · Radar · Aircraft -->
+  <g transform="translate(96 448)" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">
+    <!-- Cameras -->
+    <rect width="132" height="38" rx="19" fill="#0D1E30" stroke="#58A6FF" stroke-width="2"/>
+    <circle cx="20" cy="19" r="5.5" fill="#58A6FF"/>
+    <text x="35" y="26" fill="#A5C8FF">Cameras</text>
+    <!-- Incidents -->
+    <g transform="translate(148 0)">
+      <rect width="150" height="38" rx="19" fill="#2A1510" stroke="#F85149" stroke-width="2"/>
+      <circle cx="20" cy="19" r="5.5" fill="#F85149"/>
+      <text x="35" y="26" fill="#FF8B86">Incidents</text>
+    </g>
+    <!-- Radar -->
+    <g transform="translate(314 0)">
+      <rect width="108" height="38" rx="19" fill="#08202E" stroke="#7EE3FF" stroke-width="2"/>
+      <circle cx="20" cy="19" r="5.5" fill="#7EE3FF"/>
+      <text x="35" y="26" fill="#A5F3FC">Radar</text>
+    </g>
+    <!-- Aircraft -->
+    <g transform="translate(438 0)">
+      <rect width="130" height="38" rx="19" fill="#160F2E" stroke="#A78BFA" stroke-width="2"/>
+      <circle cx="20" cy="19" r="5.5" fill="#A78BFA"/>
+      <text x="35" y="26" fill="#C4B5FD">Aircraft</text>
+    </g>
+  </g>
+
+  <!-- ===== RIGHT MAP PANEL ===== -->
+
+  <!-- Panel outer -->
+  <rect x="718" y="108" width="352" height="428" rx="30" fill="url(#panel)" stroke="#253545" stroke-width="2"/>
+  <!-- Panel inner -->
+  <rect x="744" y="134" width="300" height="376" rx="22" fill="#070D14" stroke="#192433" stroke-width="1.5"/>
+  <!-- Glow behind state -->
+  <rect x="744" y="134" width="300" height="376" rx="22" fill="url(#fl-glow)"/>
+
+  <!-- Subtle map grid lines over panel -->
+  <g opacity="0.18" clip-path="none">
+    <path d="M744 210H1044" stroke="#2A4060" stroke-width="1"/>
+    <path d="M744 290H1044" stroke="#2A4060" stroke-width="1"/>
+    <path d="M744 370H1044" stroke="#2A4060" stroke-width="1"/>
+    <path d="M744 450H1044" stroke="#2A4060" stroke-width="1"/>
+    <path d="M820 134V510" stroke="#2A4060" stroke-width="1"/>
+    <path d="M900 134V510" stroke="#2A4060" stroke-width="1"/>
+    <path d="M980 134V510" stroke="#2A4060" stroke-width="1"/>
+  </g>
+
+  <!-- Subtle distance rings centered on FL -->
+  <g opacity="0.10">
+    <circle cx="895" cy="330" r="80" stroke="#3B6EA0" stroke-width="1.5" fill="none"/>
+    <circle cx="895" cy="330" r="150" stroke="#3B6EA0" stroke-width="1" fill="none"/>
+  </g>
+
+  <!--
+    Florida silhouette (clockwise from NE corner / Jacksonville):
+    East (Atlantic) coast descending → southern tip → Gulf coast ascending → panhandle
+    Coordinate system: inner panel x:744–1044, y:134–510
+  -->
+  <path d="
+    M 1012,208
+    L 1024,262
+    L 1030,312
+    L 1024,354
+    L 1012,388
+    L 998,420
+    L 976,444
+    L 942,462
+    L 912,472
+    L 890,462
+    L 870,441
+    L 858,412
+    L 849,384
+    L 840,350
+    L 843,318
+    L 833,285
+    L 824,248
+    L 813,208
+    L 787,205
+    L 770,216
+    L 757,195
+    L 802,186
+    L 880,182
+    L 970,188
+    Z
+  " fill="url(#fl-fill)" stroke="#5EA2F2" stroke-width="3" stroke-linejoin="round" opacity="0.95"/>
+
+  <!-- Data dots — with subtle glow -->
+  <!-- Aircraft · Jacksonville / NE FL -->
+  <circle cx="1004" cy="220" r="10" fill="#A78BFA" stroke="#E2D9FD" stroke-width="2.5" filter="url(#dot-glow)" opacity="0.9"/>
+
+  <!-- Radar · Orlando / central FL -->
+  <circle cx="955" cy="308" r="10" fill="#7EE3FF" stroke="#DDFBFF" stroke-width="2.5" filter="url(#dot-glow)" opacity="0.9"/>
+
+  <!-- Incident · Miami area -->
+  <circle cx="985" cy="436" r="10" fill="#F85149" stroke="#FFE1DE" stroke-width="2.5" filter="url(#dot-glow)" opacity="0.9"/>
+
+  <!-- Camera · Tampa Bay area -->
+  <circle cx="845" cy="336" r="10" fill="#58A6FF" stroke="#D9ECFF" stroke-width="2.5" filter="url(#dot-glow)" opacity="0.9"/>
+
+</svg>

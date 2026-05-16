@@ -1,0 +1,61 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="126" y1="94" x2="1080" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172436"/>
+      <stop offset="0.56" stop-color="#0D1420"/>
+      <stop offset="1" stop-color="#080D13"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="278" y1="230" x2="920" y2="742" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#15283E"/>
+      <stop offset="1" stop-color="#0D1826"/>
+    </linearGradient>
+    <linearGradient id="route" x1="336" y1="518" x2="792" y2="566" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#88E4FF"/>
+      <stop offset="1" stop-color="#58A6FF"/>
+    </linearGradient>
+    <filter id="shadow" x="86" y="92" width="1028" height="1016" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0156863 0 0 0 0 0.0470588 0 0 0 0 0.101961 0 0 0 0.5 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="#0D1117"/>
+  <g filter="url(#shadow)">
+    <rect x="94" y="94" width="1012" height="1012" rx="96" fill="url(#bg)"/>
+    <rect x="96" y="96" width="1008" height="1008" rx="94" stroke="#2B4668" stroke-width="4"/>
+  </g>
+
+  <g opacity="0.24">
+    <path d="M150 250H1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M150 406H1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M150 562H1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M150 718H1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M150 874H1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M288 150V1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M444 150V1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M600 150V1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M756 150V1050" stroke="#26384E" stroke-width="2"/>
+    <path d="M912 150V1050" stroke="#26384E" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(122 -14) scale(0.93)">
+    <path d="M246 364L426 316L606 360L786 312V768L606 816L426 772L246 820V364Z" fill="url(#panel)" stroke="#5EA2F2" stroke-width="32" stroke-linejoin="round"/>
+    <path d="M426 316V772" stroke="#38639A" stroke-width="24" stroke-linecap="round"/>
+    <path d="M606 360V816" stroke="#38639A" stroke-width="24" stroke-linecap="round"/>
+
+    <path d="M322 616C362 536 410 506 458 520C504 534 530 592 580 600C626 607 664 560 714 568C758 575 790 625 808 686" stroke="url(#route)" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="700" cy="586" r="62" fill="#F7783B" stroke="#FFE8D7" stroke-width="14"/>
+    <circle cx="700" cy="586" r="22" fill="#FFF6EE"/>
+    <circle cx="416" cy="532" r="18" fill="#3FB950" stroke="#D8F8DE" stroke-width="7"/>
+    <circle cx="806" cy="684" r="16" fill="#7EE3FF" stroke="#DDFBFF" stroke-width="7"/>
+  </g>
+
+  <text x="600" y="954" text-anchor="middle" fill="#F0F6FC" font-size="112" font-family="Arial, Helvetica, sans-serif" font-weight="700">FloridaMap</text>
+  <text x="600" y="1014" text-anchor="middle" fill="#58A6FF" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="700">floridamap.app</text>
+</svg>
