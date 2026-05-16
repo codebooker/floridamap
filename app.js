@@ -388,6 +388,25 @@ function syncMobileHeaderMenuState() {
   toggle.classList.toggle('active', mobileHeaderMenuOpen);
   toggle.setAttribute('aria-label', mobileHeaderMenuOpen ? 'Close layers menu' : 'Open layers menu');
   toggle.title = mobileHeaderMenuOpen ? 'Close layers menu' : 'Open layers menu';
+
+  // On desktop, nudge live-status below the open dropdown so it doesn't overlap
+  if (isDesktopPanelLayout()) {
+    const liveStatus = document.getElementById('live-status');
+    if (liveStatus) {
+      if (mobileHeaderMenuOpen) {
+        requestAnimationFrame(() => {
+          const actions = document.getElementById('header-actions');
+          const mapShell = document.getElementById('map-shell');
+          if (actions && mapShell) {
+            const gap = actions.getBoundingClientRect().bottom - mapShell.getBoundingClientRect().top + 10;
+            liveStatus.style.top = Math.max(14, gap) + 'px';
+          }
+        });
+      } else {
+        liveStatus.style.top = '';
+      }
+    }
+  }
 }
 
 function toggleMobileHeaderMenu(force) {

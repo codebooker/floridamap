@@ -2105,6 +2105,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def _write_page(self, status, filename, cache_control='no-cache'):
         with open(file_path(filename), 'rb') as handle:
             content = handle.read()
+        if filename == 'index.html':
+            import os as _os
+            try:
+                mtime = int(_os.path.getmtime(file_path('app.js')))
+                content = content.replace(b'src="/app.js"', f'src="/app.js?v={mtime}"'.encode())
+            except OSError:
+                pass
         self._write_bytes(status, content, self.guess_type(filename), cache_control=cache_control)
 
     def _respond_not_found(self):
