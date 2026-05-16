@@ -1088,27 +1088,9 @@
       }
       #main { position: relative; }
       #map-shell { width: 100% !important; }
-      #live-status {
-        top: auto;
-        right: 10px;
-        bottom: 88px;
-      }
-      #live-status.mobile-collapsed {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      #live-status.mobile-open {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .live-status-card {
-        width: min(220px, calc(100vw - 20px));
-      }
+      #live-status,
       #live-status-toggle {
-        display: inline-flex;
-        top: auto;
-        right: 10px;
-        bottom: 44px;
+        display: none !important;
       }
       #camera-hop-hud {
         display: none !important;
