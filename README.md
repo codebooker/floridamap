@@ -1,8 +1,17 @@
-# FloridaMap
+<p align="center">
+  <img src="floridamap-logo.svg" width="72" height="72" alt="FloridaMap logo" />
+</p>
 
-A live statewide Florida operations map built with vanilla JavaScript and Leaflet. Displays real-time traffic cameras, incidents, weather radar, aircraft, power outages, dynamic message signs, speed sensors, plate readers, and emergency activity across Florida.
+<h1 align="center">FloridaMap</h1>
 
-**Live site:** https://floridamap.app
+<p align="center">
+  A live statewide Florida operations map — traffic cameras, incidents, radar, aircraft, power outages, emergency dispatch, and more.<br/>
+  <strong><a href="https://floridamap.app">floridamap.app</a></strong>
+</p>
+
+<p align="center">
+  <img src="floridamap-social-card.png" alt="FloridaMap preview" width="600" />
+</p>
 
 ---
 
@@ -10,11 +19,11 @@ A live statewide Florida operations map built with vanilla JavaScript and Leafle
 
 - **Traffic cameras** — live FL511 camera feeds and snapshots
 - **Incidents** — statewide traffic incidents and construction zones
-- **Weather radar** — live RainViewer radar overlay
-- **Aircraft** — real-time aircraft positions
+- **Weather radar** — live RainViewer radar overlay with NOAA fallback
+- **Aircraft** — real-time government and civilian aircraft positions
 - **Power outages** — Duke Energy outage map
 - **Message signs** — FL511 dynamic message sign content
-- **Speed sensors** — live sensor readings
+- **Speed sensors** — live FDOT sensor readings
 - **Plate readers** — statewide LPR locations (OpenStreetMap data)
 - **Emergency activity** — PulsePoint EMS/fire dispatch
 - **Tampa Fire** — Tampa Fire Rescue unit dispatch with grid info
@@ -25,7 +34,7 @@ A live statewide Florida operations map built with vanilla JavaScript and Leafle
 
 | Layer | Tech |
 |---|---|
-| Frontend | Vanilla JS, [Leaflet 1.9.4](https://leafletjs.com/) |
+| Frontend | Vanilla JS + [Leaflet 1.9.4](https://leafletjs.com/) |
 | Video | [hls.js 1.6.16](https://github.com/video-dev/hls.js/) |
 | Backend | Python 3 stdlib HTTP server (`proxy.py`) |
 | Crypto | `cryptography` package (PulsePoint AES decryption) |
@@ -36,22 +45,18 @@ No build step. No npm. No framework.
 
 ## Running locally
 
-### 1. Install dependencies
+**1. Install dependencies**
 
 ```bash
 python3 -m pip install cryptography
 ```
 
-### 2. Set required environment variables
-
-Copy `.env.example` to `.env` and fill in real credentials:
+**2. Configure environment**
 
 ```bash
 cp .env.example .env
-# edit .env
+# fill in your credentials
 ```
-
-Required variables:
 
 | Variable | Description |
 |---|---|
@@ -64,17 +69,37 @@ Optional:
 |---|---|---|
 | `FLORIDAMAP_HOST` | `127.0.0.1` | Bind address |
 | `FLORIDAMAP_PORT` | `8765` | Listen port |
-| `FLORIDAMAP_DEBUG` | `0` | Set to `1` for verbose logging (never in production) |
+| `FLORIDAMAP_DEBUG` | `0` | Set to `1` for verbose logging |
 
-### 3. Start the server
+**3. Start**
 
 ```bash
-# Load env vars and start
-export $(grep -v '^#' .env | xargs)
-python3 proxy.py
+bash start.sh
 ```
 
-Then open http://localhost:8765 in your browser.
+Open http://localhost:8765
+
+---
+
+## Deploying
+
+The server runs as a systemd service. Example unit file:
+
+```ini
+[Unit]
+Description=FloridaMap
+After=network.target
+
+[Service]
+User=youruser
+WorkingDirectory=/path/to/floridamap
+EnvironmentFile=/path/to/floridamap/.env
+ExecStart=/usr/bin/python3 /path/to/floridamap/proxy.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
 
 ---
 
@@ -84,31 +109,25 @@ Then open http://localhost:8765 in your browser.
 index.html              Main HTML shell
 app.js                  All application JavaScript
 proxy.py                Python proxy / API gateway / static file server
+start.sh                Env loader + server launcher
 site.webmanifest        PWA manifest
-floridamap-logo.svg     SVG favicon
+floridamap-logo.svg     SVG logo / favicon
 apple-touch-icon.png    iOS home screen icon (180×180)
 icon-192.png            PWA icon (192×192)
 icon-512.png            PWA icon (512×512)
 floridamap-social-card.png    OG image (1200×630)
 floridamap-social-square.png  OG square image (1200×1200)
-floridamap-social-card.svg    Source SVG for social card
-floridamap-social-square.svg  Source SVG for social square
-cameras.json            FL511 camera registry (static)
-lpr.json                LPR location data (OpenStreetMap)
-signs.json              FL511 sign registry (static)
-construction.json       Construction zone data
 .env.example            Environment variable template
 ```
 
 ---
 
-## Security notes
+## Security
 
-- The proxy enforces a Content Security Policy with no `unsafe-inline` on scripts.
-- All API data is HTML-escaped before insertion into the DOM.
-- The stream proxy only forwards to an allowlisted upstream host (`divas.cloud`).
-- Credentials are required via environment variables — there are no hardcoded defaults.
-- See `.env.example` for required secrets. **Never commit `.env`.**
+- CSP enforced — no `unsafe-inline` on scripts
+- All API data HTML-escaped before DOM insertion
+- Stream proxy allowlisted to a single upstream host
+- Credentials loaded from environment — no hardcoded secrets
 
 ---
 
@@ -124,4 +143,3 @@ construction.json       Construction zone data
 | Tampa Fire dispatch | Tampa Gov ArcGIS |
 | Plate readers | [OpenStreetMap](https://www.openstreetmap.org/) Overpass API |
 | Base map tiles | [CartoDB](https://carto.com/basemaps/) |
-| Traffic tiles | ibi511 |
