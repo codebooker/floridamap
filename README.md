@@ -127,7 +127,13 @@ floridamap-social-square.png  OG square image (1200×1200)
 - CSP enforced — no `unsafe-inline` on scripts
 - All API data HTML-escaped before DOM insertion
 - Stream proxy allowlisted to a single upstream host
-- Credentials loaded from environment — no hardcoded secrets
+- **Credentials loaded from environment — no hardcoded secrets**
+
+---
+
+## License
+
+GPLv3 — see [LICENSE](LICENSE)
 
 ---
 
